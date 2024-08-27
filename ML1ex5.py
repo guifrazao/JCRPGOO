@@ -1,3 +1,8 @@
+"""
+5. Faça um programa que calcule a média de um aluno, quaisquer que sejam as suas
+duas notas.
+"""
+
 def calcular_media(nota1, nota2):
     return (nota1 + nota2)/2
 
