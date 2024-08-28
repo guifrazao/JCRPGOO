@@ -1,12 +1,15 @@
 """
-6. Faça um programa que calcule a nota que um aluno deve tirar na terceira prova para
-obter média 7, quaisquer que sejam as notas das duas primeiras provas.
+6. Um dado material radioativo perde metade de sua massa a cada 50s. Dada a massa
+inicial em gramas, fazer um algoritmo que determine o tempo necessário para que
+essa massa seja menor que 0,5g.
 """
 
-def calcular_nota3(nota1, nota2):
-    return (7*3) - nota1 - nota2
+def calcular_tempo_reducao(massa):
+    if massa < 0.5:
+        return 0
+    return 50 + calcular_tempo_reducao(massa/2)
 
 def main():
-    nota3 = calcular_nota3(7.6, 8.4)
-    print(nota3)
+    tempo = calcular_tempo_reducao(50.0)
+    print(f"O objeto demorará {tempo}s para que a massa seja menor que 0,5g")
 main()
