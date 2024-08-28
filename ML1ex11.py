@@ -1,16 +1,22 @@
-"""
-11. O volume de uma esfera é dado pela expressão V(r) = 4/3πr³. 
-Faça um programa que leia do teclado o valor do raio e calcule o volume da esfera correspondente.
-"""
 
+"""
+11. O volume de uma esfera pode ser calculado pela fórmula V = 4/3πr³, onde r é o raio da
+esfera. Faça um programa que imprima uma tabela de volumes para esferas que
+tenham raios entre 0 e 15 cm, de 0.5 em 0.5cm.
+"""
 from math import pi
-def calcular_volume(r):
-    return 4/3 * pi * pow(r, 3)
+def calcular_volume_esfera(raio):
+    return 4/3 * pi * raio
+
+#a tabela fica torta a partir de quando o raio é 10
+def tabela_volumes():
+    raio = 0.0
+    print("RAIO          VOLUME")
+    for i in range(31):
+        volume = calcular_volume_esfera(raio)
+        print(f"{raio:.1f}          {volume:.2f}")
+        raio += 0.5
 
 def main():
-    try:
-        raio = float(input("Digite o raio: "))
-        print(f"Volume da esfera = {calcular_volume(raio)} u³")
-    except Exception as e:
-        print(f"Erro fatal: {e}")
+    tabela_volumes()
 main()
