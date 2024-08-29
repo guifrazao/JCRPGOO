@@ -31,13 +31,11 @@ def calcular_seno(angulo, acc):
     angulo_rad = graus_para_rad(float(angulo))
     seno = 0.0
     divisor = 1
+    sinal = 1
     for i in range(acc):
-        if i % 2 == 0:
-            seno += pow(angulo_rad, divisor) / factorial(divisor) 
+            seno += (pow(angulo_rad, divisor) / factorial(divisor)) * sinal 
             divisor += 2  
-        else:
-            seno -= pow(angulo_rad, divisor) / factorial(divisor)
-            divisor += 2
+            sinal *= -1
         
         
     
