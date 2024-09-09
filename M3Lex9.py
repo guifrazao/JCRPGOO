@@ -1,25 +1,25 @@
 class Date:
     def __init__(self, dia, mes, ano):
-        self._dia = dia
-        self._mes = mes
-        self._ano = ano
+        self.__dia = dia
+        self.__mes = mes
+        self.__ano = ano
     
     def formatarData(self):
-        return f"{self._dia:02}/{self._mes:02}/{self._ano:04}"
+        return f"{self.__dia:02}/{self.__mes:02}/{self.__ano:04}"
         
     def getDia(self):
-        return self._dia
+        return self.__dia
     def setDia(self, dia):
-        self._dia = dia
+        self.__dia = dia
     def getMes(self):
-        return self._mes
+        return self.__mes
     def setMes(self, mes):
-        self._mes = mes
+        self.__mes = mes
     def getAno(self):
-        return self._ano
+        return self.__ano
     def setAno(self, ano):
-        self._ano = ano
+        self.__ano = ano
     
     
-teste = Date(4, 7, 1988)
+teste = Date(10, 10, 2010)
 print(teste.formatarData())
