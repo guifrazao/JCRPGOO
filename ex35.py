@@ -6,23 +6,25 @@ feita a opção, o programa deve chamar uma função que leia do usuário os par
 necessários para o cálculo escolhido e a seguir usar uma das funções que você já 
 implementou.
 '''
-from math import pi, factorial
+from math import pi
 
 def graus_para_rad(graus):
     radianos = graus * (pi / 180)
 
     return radianos
 
-def seno(angulo, acc):
-    angulo_rad = graus_para_rad(float(angulo))
-    seno = 0.0
-    divisor = 1
-    sinal = 1
-    for i in range(acc):
-            seno += (pow(angulo_rad, divisor) / factorial(divisor)) * sinal 
-            divisor += 2  
-            sinal *= -1
+def factorial(n):
+     if n == 1:
+          return 1
+     return n * factorial(n-1)
 
+def calcular_seno(angulo, acc):
+    angulo_rad = graus_para_rad(angulo)
+    seno = 0
+    sinal = 1
+    for i in range(1, acc, 2):
+            seno += (pow(angulo_rad, i) / factorial(i)) * sinal 
+            sinal *= -1
     return seno
 
 def valor_pi():
@@ -78,7 +80,7 @@ def main():
             print(f"\nO ângulo de {angulo_graus}° é igual a {resultado_1:.6f} radianos\n")
         elif escolha == 2:
             angulo = int(input("\nInforme um ângulo(em graus): "))
-            resultado_2 = seno(angulo, 50)
+            resultado_2 = calcular_seno(angulo, 50)
             print(f"\nO seno de {angulo}° é igual a {resultado_2}\n")
         elif escolha == 3:
             resultado_3 = valor_pi()

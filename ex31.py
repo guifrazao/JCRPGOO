@@ -6,7 +6,7 @@ seguir, escreva um programa que peça ao usuário um número inteiro e imprima a
 tabuada para aquele número (de 1 à 10) utilizando a função construída.
 ''' 
 
-def multiplicar(x, y):
+def multiplicação(x, y):
     soma = 0
     print(f"{x:>2} x {y} = ", end='')
     for c in range(1, x + 1):
@@ -19,7 +19,7 @@ def multiplicar(x, y):
 
 def tabuada(t):
     for c in range(1, 10 + 1):
-        multiplicar(c, t)
+        multiplicação(c, t)
 
 def main():
     print("\tMultiplicação e Tabuada")

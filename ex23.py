@@ -48,8 +48,13 @@ def opinioes(capacidade):
                         idades.append(idade)
                         break
 
-    maior_idade = max(idades)
-    menor_idade = min(idades)
+    maior_idade = menor_idade = idades[0]
+
+    for c in range(len(idades)):
+        if idades[c] < menor_idade:
+            menor_idade = idades[c]
+        if idades[c] > maior_idade:
+            maior_idade = idades[c]
 
     return otimo, bom, regular, ruim, pessimo, maior_idade, menor_idade 
 
@@ -57,7 +62,7 @@ def opinioes(capacidade):
 def main():
     print(f"{'OPÇÕES'}".center(12))
     print('[1] - ÓTIMO\n[2] - BOM\n[3] - REGULAR\n[4] - RUIM\n[5] - PÉSSIMO')
-    TOT_ESPECT = 5    
+    TOT_ESPECT = 5 # Número total de espectadores na sala de cinema
     resultado = opinioes(TOT_ESPECT) # Tupla que contém os returns
 
     o, b, re, ru, p, mais_velho, mais_novo = resultado # Cada elemento da tupla é atribuído a uma variável
@@ -70,6 +75,5 @@ def main():
           f"\nPÉSSIMO ------ {p:>2}({(p/50)*100:.2f}%)\n"
           f"\nIdade da pessoa mais velha = {mais_velho}"
           f"\nIdade da pessoa mais nova = {mais_novo}")
-
 
 main()
