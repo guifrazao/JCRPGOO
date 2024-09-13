@@ -16,6 +16,15 @@ c. O total da folha de pagamentos atual
 d. O total da folha de pagamentos futura nos dois casos estudados, indicando
 qual o caminho mais econômico para a empresa.
 """
+    
+def processar_dados(folha_pagamento):
+    total_folha_atual = total_folha_prog = total_folha_uni = 0.0   
+
+    total_folha_atual += sum(folha_pagamento)
+    total_folha_prog += calcular_aumento_prog(total_folha_atual)
+    total_folha_uni += calcular_aumento_uni(total_folha_atual)
+
+    return total_folha_atual, total_folha_prog, total_folha_uni
 
 def calcular_aumento_prog(salario):
     progressivo = 0.0
@@ -26,36 +35,39 @@ def calcular_aumento_prog(salario):
         progressivo = salario * 1.10
     else:
         progressivo = salario * 1.05
-    
     return progressivo
 
+def calcular_aumento_uni(salario):
+    return salario * 1.10
 
 def main():
     try:
         n_func = -1
-        total_func = 0
-        total_folha_atual = 0.0
-        total_folha_uni = 0.0
-        total_folha_prog = 0.0
+        aumento_uni = aumento_prog = total_folha_atual = total_folha_prog = total_folha_uni = 0.0
+        folha_pagamento = []
 
         while n_func < 0:
             n_func = int(input("Informe a quantidade de funcionários: "))
+
         for i in range(n_func):
             salario = -1
+            print("=" * 80)
+
             while salario < 0:
                 salario = float(input(f"Informe o salário do {i+1}° funcionário: "))
-            
-            total_func += 1
-            total_folha_atual += salario
-            total_folha_prog += calcular_aumento_prog(salario)
+                
+            folha_pagamento.append(salario)
+            aumento_uni, aumento_prog = calcular_aumento_uni(salario), calcular_aumento_prog(salario)
+            print(f"Salário em caso de aumento uniforme: R${aumento_uni:.2f}\nSalário em caso de aumento progressivo: R${aumento_prog:.2f}")
 
-        total_folha_uni = total_folha_atual * 1.10
+        total_folha_atual, total_folha_prog, total_folha_uni = processar_dados(folha_pagamento)
+            
         print("=" * 80 + "\n")
-        print(f"Total de funcionarios: {total_func}")
-        print(f"Salário médio dos funcionários: {total_folha_atual/total_func:.2f}")
-        print(f"Total da folha de pagamentos atual: {total_folha_atual}")
-        print(f"Total da folha de pagamento no caso de aumento uniforme: {total_folha_uni:.2f}")
-        print(f"Total da folha de pagamento no caso de aumento uniforme: {total_folha_prog:.2f}")
+        print(f"Total de funcionarios: {n_func}")
+        print(f"Salário médio dos funcionários: R${total_folha_atual/n_func:.2f}")
+        print(f"Total da folha de pagamentos atual: R${total_folha_atual:.2f}")
+        print(f"Total da folha de pagamento no caso de aumento uniforme: R${total_folha_uni:.2f}")
+        print(f"Total da folha de pagamento no caso de aumento progressivo: R${total_folha_prog:.2f}")
     except ValueError:
         print("Dado(s) inválido(s), fim do programa")
     except Exception as e:
