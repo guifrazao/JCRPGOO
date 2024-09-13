@@ -18,64 +18,90 @@ O final do conjunto de habitantes é reconhecido pelo valor -1 para a idade.
 
 
     
-
-def main():
+def validar_entrada_int(msg):
+    while True:
+        try:
+            valor_str = input(msg)
+            valor_int = int(valor_str)
+            return valor_int
+        except ValueError:
+            print(46*"=")
+            print("ERRO! Informe um inteiro válido.")
+            print(46*"=")
+        
+def coletar_dados():
+    while True:
+        sexo = -1
+        cor_olho = -1
+        cor_cabelo = -1
+        idade = -2
+        while idade < -1:
+            idade = validar_entrada_int("Informe sua idade (Digite -1 para sair do programa): ")
+        while sexo < 0 or sexo > 1:
+            sexo = validar_entrada_int("Informe o seu sexo (0 - Masculino, 1 - Feminino): ")
+        while cor_olho < 0 or cor_olho > 2:
+            cor_olho = validar_entrada_int("Informe a cor de seus olhos (0 - Azuis, 1 - Verdes, 2 - Castanhos): ")
+        while cor_cabelo < 0 or cor_cabelo > 2:
+            cor_cabelo = validar_entrada_int("Informe a cor de seus cabelos (0 - Louros, 1 - Castanhos, 2 - Pretos): ")        
+        
+        return sexo, cor_olho, cor_cabelo, idade
+    
+def processar_dados(dados_habitante):
     total_hab = 0 
     total_h = 0
     total_f = 0
-    maior_idade = 0
-    menor_idade = 0
     total_idades = 0
     requisito_e = 0.0
-    try:       
-        while True:
-            sexo = -1
-            cor_olho = -1
-            cor_cabelo = -1
-            idade = -2
-            while sexo < 0 or sexo > 1:
-                sexo = int(input("Informe o seu sexo (0 - Masculino, 1 - Feminino): "))
-            while cor_olho < 0 or cor_olho > 2:
-                cor_olho = int(input("Informe a cor de seus olhos (0 - Azuis, 1 - Verdes, 2 - Castanhos): "))
-            while cor_cabelo < 0 or cor_cabelo > 2:
-                cor_cabelo = int(input("Informe a cor de seus cabelos (0 - Louros, 1 - Castanhos, 2 - Pretos): "))
-            while idade < -1:
-                idade = int(input("Informe sua idade (Digite -1 para sair do programa): "))
-            if idade == -1:
-                break
+    sexo, cor_olho, cor_cabelo, idade = dados_habitante[0], dados_habitante[1], dados_habitante[2], dados_habitante[3]
 
-            total_hab += 1
-            total_idades += idade
+    total_hab += 1
+    total_idades += dados_habitante[3]
 
-            if sexo == 0:
-                total_h += 1
-            else:
-                total_f += 1
-            
-            if idade > maior_idade:
-                maior_idade = idade
-            elif idade < menor_idade:
-                menor_idade = idade
-            
-            if sexo == 1:
-                if idade >= 18 and idade <= 35:
-                    if cor_olho == 1 and cor_cabelo == 0:
-                        requisito_e += 1
-        
-        if total_hab == 0:
-            raise Exception("Nenhum habitante registrado")
-        print("=" * 80 + "\n")
-        print(f"Total de habitantes: {total_hab}")
-        print(f"Total de habitantes do sexo masculino: {total_h}")
-        print(f"Total de habitantes do sexo feminino: {total_f}")
-        print(f"Maior idade registrada: {maior_idade}")
-        print(f"Menor idade registrada: {menor_idade}")
-        print(f"Média das idades dos habitantes: {total_idades/total_hab:.2f}")
-        print(f"percentagem de indivíduos de sexo feminino cuja idade está entre 18 e 35 anos e que tenham olhos verdes e cabelos louros: {(requisito_e/total_hab)*100:.2f}%")
-    except ValueError:
-        print("Dado(s) inválido(s), fim do programa")
-    except Exception as e:
-        print(f"Erro fatal: {e}")
+    if sexo == 0:
+        total_h += 1
+    else:
+        total_f += 1
+                  
+    if sexo == 1:
+        if idade >= 18 and idade <= 35:
+            if cor_olho == 1 and cor_cabelo == 0:
+                requisito_e += 1     
+    
+    return total_hab, total_h, total_f, total_idades, requisito_e
+
+def main():
+    total_hab = total_h = total_f = total_idades = requisito_e = 0
+    maior_idade = -9999
+    menor_idade = 9999
+    while True:
+        """coletar_dados() retorna [sexo, cor_olho, cor_cabelo, idade]"""
+        dados_habitante = coletar_dados()
+        if dados_habitante[3] == -1:
+            break
+        dados_proc = processar_dados(dados_habitante)
+        total_hab += dados_proc[0] 
+        total_h += dados_proc[1] 
+        total_f += dados_proc[2] 
+        total_idades += dados_proc[3]  
+        requisito_e  += dados_proc[4]  
+
+        if dados_habitante[3] > maior_idade:
+            maior_idade = dados_habitante[3]
+        elif dados_habitante[3] < menor_idade:
+            menor_idade = dados_habitante[3]
+
+    if total_hab == 0:
+        print("Nenhum habitante registrado")
+        exit()
+
+    print("=" * 80 + "\n")
+    print(f"Total de habitantes: {total_hab}")
+    print(f"Total de habitantes do sexo masculino: {total_h}")
+    print(f"Total de habitantes do sexo feminino: {total_f}")
+    print(f"Maior idade registrada: {maior_idade}")
+    print(f"Menor idade registrada: {menor_idade}")
+    print(f"Média das idades dos habitantes: {total_idades/total_hab:.2f}")
+    print(f"percentagem de indivíduos de sexo feminino cuja idade está entre 18 e 35 anos e que tenham olhos verdes e cabelos louros: {(requisito_e/total_hab)*100:.2f}%")
 
 main()
             
