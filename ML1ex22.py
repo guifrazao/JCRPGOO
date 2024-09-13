@@ -27,6 +27,24 @@ o maior imposto.
 SALARIO_MINIMO = 1412.00
 DESCONTO_IMPOSTO = 136.00
 
+def coletar_dados():
+    cpf = -1
+    n_dep = -1
+    renda_mes = -1
+            
+    while cpf < 0:
+        cpf = int(input("Digite o CPF do contribuinte (sem pontos nem traços) (digite 0 para sair): "))
+        if cpf == 0:
+            return [0, 0, 0]
+    while len(str(cpf)) != 11:
+            cpf = int(input("Formato de CPF inválido, redigite (sem pontos nem traços) (digite 0 para sair): "))                     
+    while n_dep < 0:
+        n_dep = int(input("Digite o número de dependentes do contribuinte: "))
+    while renda_mes < 0:
+        renda_mes = float(input("Digite a renda mensal do contribuinte: "))
+    
+    return [cpf, n_dep, renda_mes]
+
 def calcular_IR(renda_mes, n_dep):
     aliquota = definir_aliquota(renda_mes)
     return (renda_mes - n_dep * DESCONTO_IMPOSTO) * aliquota
@@ -42,9 +60,27 @@ def definir_aliquota(renda_mes):
         return 1.15
     return 1.20
 
-def verificacao_cpf_lista(dados):
-    for i in range(0, len(dados)):
-        if dados[i][0] == dados[i-1][0] and i > 0:
+def processar_dados(dado_contribuinte):
+    n_contribuintes = 0
+    qtd_isento = 0
+    qtd_nao_isento = 0 
+    total_impostos = 0.00
+    renda_mes, n_dep = dado_contribuinte[2], dado_contribuinte[1]
+
+    imposto_renda = calcular_IR(renda_mes, n_dep)        
+    total_impostos += imposto_renda
+    n_contribuintes += 1
+            
+    if imposto_renda == 0:
+        qtd_isento += 1
+    else:
+        qtd_nao_isento += 1       
+    
+    return [n_contribuintes, qtd_isento, qtd_nao_isento, imposto_renda, total_impostos]
+
+def verificar_cpf_repetido(dados):
+    for i in range(len(dados)):
+        if dados[i-1][0] == dados[i][0] and i > 0:
             return False
     return True
 
@@ -52,49 +88,39 @@ def verificacao_cpf_lista(dados):
 
 def main():
     dados_contribuintes = []  
-    n_contribuintes = 0
-    qtd_isento = 0
-    qtd_nao_isento = 0
-    total_impostos = 0.00
+    n_contribuintes = qtd_isento = qtd_nao_isento = cpf_maior = 0
+    total_impostos = imposto_renda = 0.00
     maior_contribuicao = -1.00
-    cpf_maior = 0
     try:
         while True:
-            cpf = -1
-            n_dep = -1
-            renda_mes = -1
+            """coletar_dados() retorna [cpf, n_dep, renda_mes]"""
+            dado_contribuinte = coletar_dados()
+            if dado_contribuinte[0] == 0:
+                break
             
-            while cpf < 0:
-                cpf = int(input("Digite o CPF do contribuinte (sem pontos nem traços) (digite 0 para sair): "))
-            if cpf == 0:
-                break   
-            while len(str(cpf)) != 11:
-                 cpf = int(input("Formato de CPF inválido, redigite (sem pontos nem traços) (digite 0 para sair): "))                     
-            while n_dep < 0:
-                n_dep = int(input("Digite o número de dependentes do contribuinte: "))
-            while renda_mes < 0:
-                renda_mes = float(input("Digite a renda mensal do contribuinte: "))
-
-            imposto_renda = calcular_IR(renda_mes, n_dep)     
-            dados_contribuintes.append([cpf, n_dep, renda_mes, imposto_renda]) 
-            if not verificacao_cpf_lista(dados_contribuintes):
-                raise Exception("CPFs iguais detectados")     
-            total_impostos += imposto_renda
-            n_contribuintes += 1
-            
-            if imposto_renda == 0:
-                qtd_isento += 1
-            else:
-                qtd_nao_isento += 1       
+            dados_proc = processar_dados(dado_contribuinte)
+            n_contribuintes += dados_proc[0]
+            qtd_isento += dados_proc[1]
+            qtd_nao_isento += dados_proc[2]
+            imposto_renda= dados_proc[3]
+            total_impostos += dados_proc[4]
 
             if imposto_renda > maior_contribuicao:
                 maior_contribuicao = imposto_renda
-                cpf_maior = cpf
-
+                cpf_maior = dado_contribuinte[0]
+            
+            dado_contribuinte.append(imposto_renda)
+            dados_contribuintes.append(dado_contribuinte)
+        
+        if dados_contribuintes == []:
+            raise Exception("Nenhum contribuinte registrado")
+        if not verificar_cpf_repetido(dados_contribuintes):
+            raise Exception("CPFs iguais detectados")
+                        
         print("=" * 80)
-        print("Total a pagar para cada contribuinte, por ordem de cadastro: ")  
+        print("Total a pagar para cada contribuinte, identificados pelo CPF: ")  
         for i in range(len(dados_contribuintes)):
-            print(f"{i+1}° contribuinte: R${dados_contribuintes[i][3]:.2f}")
+            print(f"{dados_contribuintes[i][0]}: R${dados_contribuintes[i][3]:.2f}")
         print("")
         print(f"Número de contribuintes: {n_contribuintes}")
         print(f"Total de contribuintes isentos: {qtd_isento}")
@@ -102,6 +128,6 @@ def main():
         print(f"Total de impostos arrecadados: R${total_impostos:.2f}")
         print(f"Maior contribuição: R${maior_contribuicao:.2f}, vinda do dono do CPF {cpf_maior}")
     except Exception as e:
-        print(f"Erro fatal: {e}")
+        print(e)
 
 main()
