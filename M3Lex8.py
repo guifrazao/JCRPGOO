@@ -1,3 +1,12 @@
+"""
+8. Crie uma classe chamada Employee que inclui três variáveis de instância: um nome
+(string), um sobrenome (string) e um salário mensal (float). Sua classe deve ter um
+construtor que inicializa as três variáveis. Forneça um método get e set para cada
+variável. Se o salário mensal fornecido pelo usuário não for positivo, configure-o
+como 0.0. Teste a classe implementada e seus métodos. Crie dois objetos Employee e
+exiba o salário anual de cada objeto. Depois, dê 10% de aumento para cada
+empregado e exiba novamente os salários.
+"""
 class Employee:
     def __init__(self, nome, sobrenome, salario_mes):
         self.__nome = nome
@@ -7,6 +16,8 @@ class Employee:
     """A variável 'aumento' é o aumento em porcentagem, não em valor decimal"""
     def aumentarSalario(self, aumento):
         self.__salario_mes += self.__salario_mes * aumento/100
+    def getSalarioAnual(self):
+        return self.salario * 12
     
         
     def getNome(self):
@@ -25,11 +36,11 @@ class Employee:
 iran = Employee("Iran", "Ferreira", 300.42)
 ronaldo = Employee("Ronaldo", "Fenômeno", 11276.65)
 
-print(f"Salário anual de {iran.getNome()} {iran.getSobrenome()}: R${iran.getSalario()*12:.2f}")
-print(f"Salário anual de {ronaldo.getNome()} {ronaldo.getSobrenome()}: R${ronaldo.getSalario()*12:.2f}")
+print(f"Salário anual de {iran.getNome()} {iran.getSobrenome()}: R${iran.getSalarioAnual():.2f}")
+print(f"Salário anual de {ronaldo.getNome()} {ronaldo.getSobrenome()}: R${ronaldo.getSalarioAnual():.2f}")
 
 iran.aumentarSalario(10.0)
 ronaldo.aumentarSalario(10.0)
 
-print(f"Salário anual de {iran.getNome()} {iran.getSobrenome()} após aumento: R${iran.getSalario()*12:.2f}")
-print(f"Salário anual de {ronaldo.getNome()} {ronaldo.getSobrenome()} após aumento: R${ronaldo.getSalario()*12:.2f}")
+print(f"Salário anual de {iran.getNome()} {iran.getSobrenome()} após aumento: R${iran.getSalarioAnual():.2f}")
+print(f"Salário anual de {ronaldo.getNome()} {ronaldo.getSobrenome()} após aumento: R${ronaldo.getSalarioAnual():.2f}")
