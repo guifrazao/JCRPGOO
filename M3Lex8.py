@@ -17,7 +17,7 @@ class Employee:
     def aumentarSalario(self, aumento):
         self.__salario_mes += self.__salario_mes * aumento/100
     def getSalarioAnual(self):
-        return self.salario * 12
+        return self.__salario_mes * 12
     
         
     def getNome(self):
