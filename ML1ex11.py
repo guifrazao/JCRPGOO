@@ -4,17 +4,18 @@
 esfera. Faça um programa que imprima uma tabela de volumes para esferas que
 tenham raios entre 0 e 15 cm, de 0.5 em 0.5cm.
 """
-from math import pi
+from ex33 import calcular_pi
 def calcular_volume_esfera(raio):
-    return 4/3 * pi * raio
+    pi = calcular_pi(1000)
+    return 4/3 * pi * pow(raio, 3)
 
 #a tabela fica torta a partir de quando o raio é 10
 def tabela_volumes():
     raio = 0.0
-    print("RAIO          VOLUME")
-    for i in range(31):
+    print("RAIO\t\tVOLUME")
+    for i in range(30+1):
         volume = calcular_volume_esfera(raio)
-        print(f"{raio:.1f}          {volume:.2f}")
+        print(f"{raio:.1f}\t\t{volume:.2f}")
         raio += 0.5
 
 def main():
