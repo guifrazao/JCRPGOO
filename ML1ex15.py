@@ -7,10 +7,10 @@ def factorial(n):
         f *= i
     return f
 
-def calcular_serie(n_inicial, qtd_series):
-    if qtd_series == 0:
+def calcular_serie(n_inicial, qtd_termos):
+    if qtd_termos == 0:
         return n_inicial/factorial(100-n_inicial)
-    return n_inicial/factorial(100-n_inicial) + calcular_serie(n_inicial-1, qtd_series-1)
+    return n_inicial/factorial(100-n_inicial) + calcular_serie(n_inicial-1, qtd_termos-1)
 
 def main():
     dez_primeiros = calcular_serie(100, 10)
