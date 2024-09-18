@@ -23,11 +23,11 @@ def factorial(n):
 def graus_para_rad(angulo):
     return angulo * calcular_pi(1000) / 180.0
 
-def calcular_seno(angulo, acc):
+def calcular_seno(angulo, precisao):
     angulo_rad = graus_para_rad(float(angulo))
     seno = 0.0
     sinal = 1
-    for i in range(1, acc, 2):
+    for i in range(1, precisao, 2):
             seno += (pow(angulo_rad, i) / factorial(i)) * sinal 
             sinal *= -1
     return seno
