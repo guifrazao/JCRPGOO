@@ -17,28 +17,20 @@ d. O total da folha de pagamentos futura nos dois casos estudados, indicando
 qual o caminho mais econômico para a empresa.
 """
     
-def coletar_dados(n_func):
-    folha_pagamento = []
-    for i in range(n_func):
-        salario = -1
-        print("=" * 80)
-        while salario < 0:
-            salario = float(input(f"Informe o salário do {i+1}° funcionário: "))
-            
-        aumento_uni, aumento_prog = calcular_aumento_uni(salario), calcular_aumento_prog(salario)
-        print(f"Salário em caso de aumento uniforme: R${aumento_uni:.2f}\nSalário em caso de aumento progressivo: R${aumento_prog:.2f}")
-        folha_pagamento.append(salario)
-        
-    return folha_pagamento
-    
 def processar_dados(folha_pagamento):
-    total_folha_atual = total_folha_prog = total_folha_uni = 0.0   
+    total_folha_atual = total_folha_prog = total_folha_uni = 0.0
+    melhor_caminho = ""   
 
     total_folha_atual += sum(folha_pagamento)
     total_folha_prog += calcular_aumento_prog(total_folha_atual)
     total_folha_uni += calcular_aumento_uni(total_folha_atual)
 
-    return total_folha_atual, total_folha_prog, total_folha_uni
+    if total_folha_uni > total_folha_prog:
+        melhor_caminho = "O caminho mais econômico é o de aumento progressivo"
+    else:
+        melhor_caminho = "O caminho mais econômico é o de aumento uniforme"
+
+    return total_folha_atual, total_folha_prog, total_folha_uni, melhor_caminho
 
 def calcular_aumento_prog(salario):
     progressivo = 0.0
@@ -57,14 +49,25 @@ def calcular_aumento_uni(salario):
 def main():
     try:
         n_func = -1
-        total_folha_atual = total_folha_prog = total_folha_uni = 0.0
+        aumento_uni = aumento_prog = total_folha_atual = total_folha_prog = total_folha_uni = 0.0
+        melhor_caminho = ""
         folha_pagamento = []
 
-        while n_func <= 0:
+        while n_func < 0:
             n_func = int(input("Informe a quantidade de funcionários: "))
-           
-        folha_pagamento = coletar_dados(n_func)
-        total_folha_atual, total_folha_prog, total_folha_uni = processar_dados(folha_pagamento)
+
+        for i in range(n_func):
+            salario = -1
+            print("=" * 80)
+
+            while salario < 0:
+                salario = float(input(f"Informe o salário do {i+1}° funcionário: "))
+                
+            folha_pagamento.append(salario)
+            aumento_uni, aumento_prog = calcular_aumento_uni(salario), calcular_aumento_prog(salario)
+            print(f"Salário em caso de aumento uniforme: R${aumento_uni:.2f}\nSalário em caso de aumento progressivo: R${aumento_prog:.2f}")
+
+        total_folha_atual, total_folha_prog, total_folha_uni, melhor_caminho = processar_dados(folha_pagamento)
             
         print("=" * 80 + "\n")
         print(f"Total de funcionarios: {n_func}")
@@ -72,10 +75,12 @@ def main():
         print(f"Total da folha de pagamentos atual: R${total_folha_atual:.2f}")
         print(f"Total da folha de pagamento no caso de aumento uniforme: R${total_folha_uni:.2f}")
         print(f"Total da folha de pagamento no caso de aumento progressivo: R${total_folha_prog:.2f}")
+        print(f"{melhor_caminho}")
     except ValueError:
         print("Dado(s) inválido(s), fim do programa")
     except Exception as e:
         print(f"Erro fatal: {e}")
 main()
             
+
 
