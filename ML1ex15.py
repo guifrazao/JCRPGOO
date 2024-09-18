@@ -1,7 +1,12 @@
 """
 15. Elabore um programa que calcule e mostre a soma dos 10 primeiros termos da série: 100/0! + 99/1! + 98/2! + 97/3!...
 """
-from math import factorial
+def factorial(n):
+    f = 1
+    for i in range(1, n+1):
+        f *= i
+    return f
+
 def calcular_serie(n_inicial, qtd_series):
     if qtd_series == 0:
         return n_inicial/factorial(100-n_inicial)
