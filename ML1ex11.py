@@ -9,10 +9,9 @@ def calcular_volume_esfera(raio):
     pi = calcular_pi(1000)
     return 4/3 * pi * pow(raio, 3)
 
-#a tabela fica torta a partir de quando o raio é 10
 def tabela_volumes():
     raio = 0.0
-    print("RAIO\t\tVOLUME")
+    print("RAIO (cm)\t\tVOLUME (cm³)")
     for i in range(30+1):
         volume = calcular_volume_esfera(raio)
         print(f"{raio:.1f}\t\t{volume:.2f}")
