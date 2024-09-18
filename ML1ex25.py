@@ -35,8 +35,10 @@ def coletar_dados():
         cor_olho = -1
         cor_cabelo = -1
         idade = -2
-        while idade < -1:
+        while idade < -1 and idade != 0:
             idade = validar_entrada_int("Informe sua idade (Digite -1 para sair do programa): ")
+            if idade == -1:
+                return [0, 0, 0, -1]
         while sexo < 0 or sexo > 1:
             sexo = validar_entrada_int("Informe o seu sexo (0 - Masculino, 1 - Feminino): ")
         while cor_olho < 0 or cor_olho > 2:
@@ -46,12 +48,7 @@ def coletar_dados():
         
         return sexo, cor_olho, cor_cabelo, idade
     
-def processar_dados(dados_habitante):
-    total_hab = 0 
-    total_h = 0
-    total_f = 0
-    total_idades = 0
-    requisito_e = 0.0
+def processar_dados(dados_habitante, total_hab, total_h, total_m, total_idades, maior_idade, menor_idade, requisito_e):
     sexo, cor_olho, cor_cabelo, idade = dados_habitante[0], dados_habitante[1], dados_habitante[2], dados_habitante[3]
 
     total_hab += 1
@@ -60,36 +57,37 @@ def processar_dados(dados_habitante):
     if sexo == 0:
         total_h += 1
     else:
-        total_f += 1
+        total_m += 1
+
+    if dados_habitante[3] > maior_idade:
+        maior_idade = dados_habitante[3]
+    elif dados_habitante[3] < menor_idade:
+        menor_idade = dados_habitante[3]
                   
     if sexo == 1:
         if idade >= 18 and idade <= 35:
             if cor_olho == 1 and cor_cabelo == 0:
                 requisito_e += 1     
     
-    return total_hab, total_h, total_f, total_idades, requisito_e
+    return total_hab, total_h, total_m, total_idades, maior_idade, menor_idade, requisito_e
 
 def main():
-    total_hab = total_h = total_f = total_idades = requisito_e = 0
-    maior_idade = -9999
-    menor_idade = 9999
+    total_hab = total_h = total_m = total_idades = requisito_e = 0
+    maior_idade = 0
+    menor_idade = 0
     while True:
         """coletar_dados() retorna [sexo, cor_olho, cor_cabelo, idade]"""
         dados_habitante = coletar_dados()
         if dados_habitante[3] == -1:
             break
-        dados_proc = processar_dados(dados_habitante)
-        total_hab += dados_proc[0] 
-        total_h += dados_proc[1] 
-        total_f += dados_proc[2] 
-        total_idades += dados_proc[3]  
-        requisito_e  += dados_proc[4]  
-
-        if dados_habitante[3] > maior_idade:
-            maior_idade = dados_habitante[3]
-        elif dados_habitante[3] < menor_idade:
-            menor_idade = dados_habitante[3]
-
+        total_hab, total_h, total_m, total_idades, maior_idade, menor_idade, requisito_e = processar_dados(dados_habitante, 
+                                                                                                           total_hab, 
+                                                                                                           total_h, 
+                                                                                                           total_m, 
+                                                                                                           total_idades, 
+                                                                                                           maior_idade, 
+                                                                                                           menor_idade, 
+                                                                                                           requisito_e)
     if total_hab == 0:
         print("Nenhum habitante registrado")
         exit()
@@ -97,7 +95,7 @@ def main():
     print("=" * 80 + "\n")
     print(f"Total de habitantes: {total_hab}")
     print(f"Total de habitantes do sexo masculino: {total_h}")
-    print(f"Total de habitantes do sexo feminino: {total_f}")
+    print(f"Total de habitantes do sexo feminino: {total_m}")
     print(f"Maior idade registrada: {maior_idade}")
     print(f"Menor idade registrada: {menor_idade}")
     print(f"Média das idades dos habitantes: {total_idades/total_hab:.2f}")
