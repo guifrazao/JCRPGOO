@@ -10,7 +10,7 @@ qtd_numeros = 0
 
 while True:
     try:
-        num = float(input(f"\nInsira o número {count} (digite um número negativo para parar): "))
+        num = float(input(f"\nInsira o {count}° número (digite um número negativo para parar): "))
         
         if num < 0:
             break
