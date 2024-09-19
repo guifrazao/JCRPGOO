@@ -55,7 +55,7 @@ def calcular_totais(consumidores, preco_kwh):
             'contadores_tipo': {'R': 0, 'C': 0, 'I': 0}
         }
     
-    total_arrecadado = 0
+    TOTAL_ARRECADADO = 0
     
     # Inicializa maior e menor consumo com o valor do primeiro consumidor
     maior_consumo = consumidores[0]['consumo']
