@@ -23,7 +23,7 @@ def verificar_entrada(mensagem):
             print("ERROR FATAL! Insira um valor numérico válido.")
             print("=-"*30)
 
-def loop_tentativas(nivel):
+def loop_tentativas():
     """Loop para gerenciar tentativas dentro de um nível específico."""
     tentativas = 0
     pontos_acumulados = 0
