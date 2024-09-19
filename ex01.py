@@ -45,19 +45,19 @@ def menu():
 
 def conversor_dolar(reais):
     DOLAR = 3.258
-    return reais * DOLAR
+    return reais / DOLAR
 
 def conversor_euro(reais):
     EURO = 4.095
-    return reais * EURO
+    return reais / EURO
 
 def conversor_libra(reais):
     LIBRA = 4.529
-    return reais * LIBRA
+    return reais / LIBRA
 
 def conversor_yuan(reais):
     YUAN = 0.515
-    return reais * YUAN
+    return reais / YUAN
 
 def verificar_float(mensagem):
     while True:
