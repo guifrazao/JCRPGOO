@@ -4,7 +4,7 @@ demais são dados pela soma dos dois anteriores. Faça um programa que imprima o
 “n” primeiros termos da série, sendo “n” dado pelo usuário.
 """
 def calcular_termos(n):
-    termo1 = 0
+    termo1 = 1
     termo2 = 1
     if n <= 0:
         print("Não foi exigido nenhum número de termos válidos")
