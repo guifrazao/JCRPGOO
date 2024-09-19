@@ -71,39 +71,32 @@ def main():
     while True:
         escolha = menu()
 
-        if escolha == 1:
-            reais = verificar_float("Digite o valor a ser convertido: R$")
-            if reais < 0:
-                print("ERRO! Digite um valor positivo")
-            else:
-                resultado = conversor_dolar(reais)
-                print(f"O valor R${reais} convertido em DÓLAR é: {resultado}")
-        elif escolha == 2:
-            reais = verificar_float("Digite o valor a ser convertido: R$")
-            if reais < 0:
-                print("ERRO! Digite um valor positivo")
-            else:
-                resultado = conversor_euro(reais)
-                print(f"O valor R${reais} convertido em EURO é: {resultado}")
-        elif escolha == 3:
-            reais = verificar_float("Digite o valor a ser convertido: R$")
-            if reais < 0:
-                print("ERRO! Digite um valor positivo")
-            else:
-                resultado = conversor_libra(reais)
-                print(f"O valor R${reais} convertido em LIBRA é: {resultado}")
-        elif escolha == 4:
-            reais = verificar_float("Digite o valor a ser convertido: R$")
-            if reais < 0:
-                print("ERRO! Digite um valor positivo")
-            else:
-                resultado = conversor_yuan(reais)
-                print(f"O valor R${reais} convertido em YUAN é: {resultado :.2f}") 
-        else:
+        if escolha == 5:
             print("Saindo...")
             break
 
+        reais = verificar_float("Digite o valor a ser convertido: R$")
+        if reais < 0:
+            print("ERRO! Digite um valor positivo")
+        else:
+
+            if escolha == 1:
+                resultado = conversor_dolar(reais)
+                print(f"O valor R${reais} convertido em DÓLAR é: {resultado}")
+            elif escolha == 2:
+                resultado = conversor_euro(reais)
+                print(f"O valor R${reais} convertido em EURO é: {resultado}")
+            elif escolha == 3:
+                resultado = conversor_libra(reais)
+                print(f"O valor R${reais} convertido em LIBRA é: {resultado}")
+            else:
+                resultado = conversor_yuan(reais)
+                print(f"O valor R${reais} convertido em YUAN é: {resultado :.2f}") 
+                
 main()
+
+
+
 
 
 
