@@ -82,13 +82,13 @@ def main():
 
             if escolha == 1:
                 resultado = conversor_dolar(reais)
-                print(f"O valor R${reais} convertido em DÓLAR é: {resultado}")
+                print(f"O valor R${reais} convertido em DÓLAR é: {resultado:.2f}")
             elif escolha == 2:
                 resultado = conversor_euro(reais)
-                print(f"O valor R${reais} convertido em EURO é: {resultado}")
+                print(f"O valor R${reais} convertido em EURO é: {resultado:.2f}")
             elif escolha == 3:
                 resultado = conversor_libra(reais)
-                print(f"O valor R${reais} convertido em LIBRA é: {resultado}")
+                print(f"O valor R${reais} convertido em LIBRA é: {resultado:.2f}")
             else:
                 resultado = conversor_yuan(reais)
                 print(f"O valor R${reais} convertido em YUAN é: {resultado :.2f}") 
