@@ -1,3 +1,8 @@
+"""
+3. Crie uma classe chamada VendingMachine que simule uma máquina de venda de
+produtos. Essa classe deve permitir cadastrar produtos, selecionar um produto para
+compra, inserir dinheiro, retornar o troco e exibir o estoque disponível.
+"""
 from Product import Product
 
 class VendingMachine:
