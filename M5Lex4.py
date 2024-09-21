@@ -17,22 +17,22 @@ class CardsGame:
             
 
     def playTurn(self, player, cards):
-        players = self.getPlayers()     
+        if len(self.getPlayers()) == 1:
+            self.__awardVictory(player) 
+
         print(f"{player['name']}'s turn [{player['points']} points]")
         if input("Do you wish to take a card from the deck? [y/n]").lower() == "y":
             self.addPoints(player, cards)
             print(f"{player['name']}'s points changed to {player['points']}")
-            self.setCurrCards(cards)  
+            self.setCurrCards(cards) 
 
         if self.checkForWinner(player) == "LOST":
-            print(f"{player['name']} eliminated, points are over 21")
-            players.remove(player)           
-            self.setPlayers(players)            
-        elif self.checkForWinner(player) == "WON" or len(players) == 1:
-                print(f"{player['name']} won, end of game")
-                exit()     
+            self.__eliminatePlayer(player)   
+            print()            
+        elif self.checkForWinner(player) == "WON":
+            self.__awardVictory(player)
         else:
-            pass
+            print()
 
     def checkForWinner(self, player):
         if player["points"] == 21:
@@ -53,10 +53,6 @@ class CardsGame:
                 self.addPoints(player, cards)
         self.setCurrCards(cards)
 
-    # def makeMove(self, player, cards):
-    #     player["points"] += list(cards[0].values())[0]
-    #     cards.pop(0)
-
     """Points is the sum of the values of the cards the player currently has"""
     def addPlayer(self, player):
         self.__players.append({"name":player, "points":0})
@@ -76,6 +72,16 @@ class CardsGame:
     
     def setCurrCards(self, curr_cards):
         self.__curr_cards = curr_cards
+
+    def __awardVictory(self, player):
+        print(f"{player['name']} won, end of game")
+        exit()
+    
+    def __eliminatePlayer(self, player):
+        print(f"{player['name']} eliminated, points are over 21")
+        players = self.getPlayers()
+        players.remove(player)           
+        self.setPlayers(players)
     
     @classmethod
     def __getCards(cls):
