@@ -41,9 +41,7 @@ class NoughtsAndCrosses:
             row = int(input("Enter the row: "))
             col = int(input("Enter the column: "))
             print()
-            if (0 <= row <= 2) and (0 <= col <= 2):
-                break
-            else:
+            if ((row < 0 or row > 2) or (col < 0 or col > 2)):
                 print("Invalid input! Row and column must be between 0 and 2.\n")
         if self.grade[row][col] == " ":
             self.grade[row][col] = self.current_player
