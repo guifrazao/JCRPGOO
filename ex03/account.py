@@ -24,12 +24,5 @@ class Account:
     def get_bank_balance(self):
         '''Returns the bank balance of the account'''
         return "The account balance is R$" + str(self.__bank_balance)
-    '''
-    def set_bank_balance(self, bank_balance):
-        #Change the bank balance of the account
-        if bank_balance >= 0:
-            self.__bank_balance = bank_balance
-        else:
-            return "Bank balance cannot be negative"
-    '''
+   
 
