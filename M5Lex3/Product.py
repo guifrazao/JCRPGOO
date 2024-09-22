@@ -1,7 +1,8 @@
 class Product:
     def __init__(self, name, price, amount):
         if not self.__verifyData(name, price, amount):
-            raise Exception("Invalid product data")
+            self.__invalidDataMsg()
+            exit()
         else:
             self.__name = name
             self.__price = price
@@ -28,8 +29,10 @@ class Product:
     def setAmount(self, amount):
         self.__amount = amount
     
+    def __invalidDataMsg(self):
+        print("Invalid data")
+
     @staticmethod
     def __verifyData(name, price, amount):
         return isinstance(name, str) and len(name) >= 3 and isinstance(price, float) and price > 0 and isinstance(amount, int) and amount >= 0
     
-teste = Product("receba", 7.0, 50)
