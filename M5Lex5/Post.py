@@ -29,7 +29,6 @@ class Post:
             teste += "\n" + comment["poster"] + ": " + comment["msg"]
         return teste
     
-    """ACESSO DIRETO A UM ATRIBUTO, COISA DE COMPUTEIRO, APENAS PARA TESTE"""
     @classmethod
     def __incrementID(cls):
         cls.setID(cls.__id+1)
