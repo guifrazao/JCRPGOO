@@ -1,9 +1,3 @@
-"""
-3. Crie uma classe chamada VendingMachine que simule uma máquina de venda de
-produtos. Essa classe deve permitir cadastrar produtos, selecionar um produto para
-compra, inserir dinheiro, retornar o troco e exibir o estoque disponível.
-"""
-from Product import Product
 
 class VendingMachine:
     def __init__(self):
@@ -21,18 +15,18 @@ class VendingMachine:
         price = product.getPrice()
 
         if not self.__validadeTransaction(payment, product, amount_purchased):
-            print("Invalid transaction")
+            self.__invalidTransactionMsg()
             exit()
 
         product.setAmount(product.getAmount()-amount_purchased)
-        change = self.returnChange(payment, price*amount_purchased)
+        change = self.__returnChange(payment, price*amount_purchased)
         print(f"Purchase of product {product.getName()} successful, change: ${change:.2f}")
 
     """Selects the product by its name, returns the product in case __checkStock() says the product is in stock"""
     def selectProduct(self, name):
         product = self.__getProductByName(name)
         if not self.__checkStock(product):
-            print("This product is not in stock")
+            self.__productNotInStockMsg()
             exit()
         return product
 
@@ -46,7 +40,7 @@ class VendingMachine:
     def insertMoney(self, payment):
         self.setBalance(self.__balance + payment)
 
-    def returnChange(self, payment, price):
+    def __returnChange(self, payment, price):
         change = payment - price
         self.setBalance(self.__balance - change)
         return change
@@ -65,6 +59,11 @@ class VendingMachine:
     def __validadeTransaction(self, payment, product, amount_purchased):
         return payment >= product.getPrice()*amount_purchased and product.getAmount()-amount_purchased >= 0
 
+    def __invalidTransactionMsg(self):
+        print("Invalid transaction")
+
+    def __productNotInStockMsg(self):
+        print("This product is not in stock")
 
 
     def getStock(self):
@@ -73,15 +72,4 @@ class VendingMachine:
         return self.__balance
     def setBalance(self, balance):
         self.__balance = balance
-
-    
-teste = VendingMachine()
-produto = Product("banana", 7.0, 50)
-produto2 = Product("maça", 5.0, 30)
-teste.addProduct(produto)
-teste.addProduct(produto2)
-teste.buyProduct("banana", 120.78, 10)
-print(teste.showStock())
-print(teste.getBalance())
-
-    
+        
