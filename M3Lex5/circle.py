@@ -26,10 +26,15 @@ class Circle:
 
     def set_radius(self, value):
         """Atualiza o raio do círculo, desde que seja um valor não negativo."""
+        self.__radius = self.verify_radius(value)
+        
+    def verify_radius(self, value):
+        """Verifica se o raio é menor que zero."""
         if value >= 0:
-            self.__radius = value
+            return value
         else:
-            raise ValueError("O raio não pode ser menor que zero.")
+            print("Aviso: O raio não pode ser menor que zero. O raio não foi alterado.")
+            return self.__radius 
 
     def area(self):
         """Calcula e retorna a área do círculo."""
