@@ -16,12 +16,12 @@ class Account:
 
     def debit(self, ammount):
         ''' Debits a specified amount from the account if sufficient funds are available.'''
-        if self.verify_banck_balance(ammount):
+        if self.verify_bank_balance(ammount):
             self.__bank_balance -= ammount #ammount = quantia
             return "Withdrawal successful."
         return "Debit ammount exceeds account balance."
         
-    def verify_banck_balance(self, ammount):
+    def verify_bank_balance(self, ammount):
         '''Verifies if the amount is less than or equal to the current bank balance.'''
         if ammount <= self.__bank_balance:
             return True 
