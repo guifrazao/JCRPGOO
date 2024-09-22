@@ -1,20 +1,21 @@
-from Student import Student
-import random
+"""
+3. Crie uma classe chamada VendingMachine que simule uma máquina de venda de
+produtos. Essa classe deve permitir cadastrar produtos, selecionar um produto para
+compra, inserir dinheiro, retornar o troco e exibir o estoque disponível.
+"""
+from VendingMachine import VendingMachine
+from Product import Product
 
-iran = Student("IRAN FERREIRA", "111", "18", 3)
-ronaldo = Student("RONALDO FENOMENO", "222", "52", 3)
-cassio = Student("GOLEIRO CASSIO", "333", "45", 3)
-ronaldinho = Student("RONALDINHO GAUCHO", "444", "32", 3)
+machine = VendingMachine()
+banana = Product("banana", 7.50, 50)
+pineapple = Product("abacaxi", 12.32, 30)
 
-print(iran<ronaldo)
-print(iran>ronaldo)
-print(iran==ronaldo)
-print()
+machine.addProduct(banana)
+machine.addProduct(pineapple)
 
-lista_student = [iran, ronaldo, cassio, ronaldinho]
-random.shuffle(lista_student)
-lista_student.sort()
-
-for student in lista_student:
-    print(student)
-    print()
+product = input("Type which fruit you would like to purchase: ").lower()
+payment = float(input("Type the amount of money to pay with: $"))
+amount = int(input("Type the amount of fruit to be purchased: "))
+machine.buyProduct(product, payment, amount)
+print(machine.showStock())
+print(machine.getBalance())
