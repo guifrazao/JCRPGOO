@@ -1,8 +1,3 @@
-"""
-5. Crie uma classe chamada SocialNetwork que represente uma rede social online. Essa
-classe deve ter funcionalidades para adicionar amigos, publicar mensagens,
-comentar em posts e buscar por usuários.
-"""
 from Post import Post
 from User import User
 class SocialNetwork:
@@ -31,7 +26,7 @@ class SocialNetwork:
     def findUser(self, name):
         user = self.getUser(name)
         if user is None:
-            print("User not found")
+            print(self.__userNotFoundMsg())
             exit()
         return f"{user}"
         
@@ -58,25 +53,5 @@ class SocialNetwork:
     def __newFriendMsg(self, user):
         return f"New friend {user.getName()} added"
     
-
-        
-
-    
-
-
-conta_teste = User("IRAN FERREIRA")
-conta2 = User("RONALDO FENOMENO")
-teste = SocialNetwork()
-
-teste.addUser(conta_teste)
-teste.addUser(conta2)
-teste.addFriend(conta2, conta_teste)
-teste.makePost(conta_teste, "TESTE")
-teste.makePost(conta_teste, "TESTE2")
-
-post_teste = teste.getPost(1)
-teste.makeComment(post_teste, conta_teste, "RECEBA")
-teste.makeComment(post_teste, conta_teste, "DEVOLVA")
-
-nome = conta_teste.getName()
-print(teste.findUser(nome))
+    def __userNotFoundMsg(self):
+        return "User not found"
