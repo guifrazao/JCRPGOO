@@ -1,4 +1,8 @@
-
+"""
+3. Crie uma classe chamada VendingMachine que simule uma máquina de venda de
+produtos. Essa classe deve permitir cadastrar produtos, selecionar um produto para
+compra, inserir dinheiro, retornar o troco e exibir o estoque disponível.
+"""
 class VendingMachine:
     def __init__(self):
         self.__stock = []
@@ -20,7 +24,7 @@ class VendingMachine:
 
         product.setAmount(product.getAmount()-amount_purchased)
         change = self.__returnChange(payment, price*amount_purchased)
-        print(f"Purchase of product {product.getName()} successful, change: ${change:.2f}")
+        self.__purchaseSuccessfulMsg(product, change)
 
     """Selects the product by its name, returns the product in case __checkStock() says the product is in stock"""
     def selectProduct(self, name):
@@ -59,6 +63,9 @@ class VendingMachine:
     def __validadeTransaction(self, payment, product, amount_purchased):
         return payment >= product.getPrice()*amount_purchased and product.getAmount()-amount_purchased >= 0
 
+    def __purchaseSuccessfulMsg(self, product, change):
+        print(f"Purchase of product {product.getName()} successful, change: ${change:.2f}")
+
     def __invalidTransactionMsg(self):
         print("Invalid transaction")
 
@@ -72,4 +79,3 @@ class VendingMachine:
         return self.__balance
     def setBalance(self, balance):
         self.__balance = balance
-        
