@@ -61,8 +61,11 @@ class NoughtsAndCrosses:
                 return self.grade[0][c]
         
         # checking diagonals
-        if (self.grade[0][0] == self.grade[1][1] == self.grade[2][2] != " ") or (self.grade[2][0] == self.grade[1][1] == self.grade[0][2] != " "): 
+        if (self.grade[0][0] == self.grade[1][1] == self.grade[2][2] != " "): 
             return self.grade[0][0]
+        
+        if (self.grade[2][0] == self.grade[1][1] == self.grade[0][2] != " "): 
+            return self.grade[2][0]
 
         for row in self.grade:
             for square in row:
