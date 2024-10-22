@@ -5,11 +5,10 @@ acesso e impressão para esta classe e faça um programa de teste.
 '''
 
 class Vehicle:
-    def __init__(self, current_speed, direction, owner, type_vehicle = None):
+    def __init__(self, current_speed, direction, owner):
         self.__current_speed = current_speed
         self.__direction = direction
         self.__owner = owner
-        self.__type_vehicle = type_vehicle
 
     def get_current_speed(self):
         return self.__current_speed + "km/h"
