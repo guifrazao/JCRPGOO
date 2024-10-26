@@ -1,0 +1,43 @@
+class Validator_Bicycle:
+    @staticmethod
+    def verifyVelocidade(velocidade):
+        return velocidade >= 0
+    
+    @staticmethod
+    def verifyCadencia(cadencia):
+        return cadencia >= 0
+
+    @staticmethod
+    def verifyMarcha(marcha):
+        return 1 <= marcha <= 18
+
+    @staticmethod
+    def verifyNumeroSerie(numero_serie):
+        return numero_serie > 1000
+
+    @staticmethod
+    def invalidDataMessage(err):
+        print(f"Erro: {err} inválido.")
+
+class Validator_Owner:
+    @staticmethod
+    def verifyName(name):
+        return len(name) >= 3
+    
+    @staticmethod
+    def verifyCPF(cpf):
+        return len(cpf) == 11 and cpf.isnumeric()
+    
+class Validator_Roda:
+    @staticmethod
+    def verifyTamanho(tamanho):
+        return tamanho > 0
+
+    @staticmethod
+    def verifyPressao(pressao):
+        return 20 <= pressao <= 120  # Exemplo de intervalo de pressão
+
+class invalidDataMessage:
+    @staticmethod
+    def invalidDataMessage(err):
+        print(f"Erro: {err} inválido.")
