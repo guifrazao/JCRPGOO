@@ -6,7 +6,7 @@ class Account:
     def __init__(self, bank_balance, owner: Owner):
         '''Initializes a new Account object.'''
         self.__bank_balance = bank_balance  # bank_balance = saldo bancário
-        self.__owner = owner  # Injecting the Owner dependency
+        self.__owner = owner  
 
     def debit(self, amount):
         '''Debits a specified amount from the account if sufficient funds are available'''
