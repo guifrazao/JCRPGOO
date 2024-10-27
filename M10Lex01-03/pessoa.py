@@ -1,3 +1,9 @@
+'''
+M10L-ex01. Crie uma classe Person, contendo os atributos encapsulados, com seus respectivos 
+seletores (getters) e modificadores (setters), e ainda o construtor padrão. Atributos: 
+nome, endereço, CPF, RG e telefone. 
+'''
+
 class Pessoa:
     def __init__(self, nome, endereço, cpf, rg, telefone):
         if not self.verify_nome(nome):
