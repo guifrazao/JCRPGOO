@@ -1,3 +1,9 @@
+'''
+Implemente uma classe chamada Schedule que represente uma agenda telefônica. 
+Essa classe deve permitir adicionar, editar e remover contatos, além de buscar por 
+contatos a partir de um nome ou número de telefone. 
+'''
+
 from contact import Contact
 
 class Schedule:
