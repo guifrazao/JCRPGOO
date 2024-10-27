@@ -21,3 +21,13 @@ class Engine:
     def set_horsepower(self, horsepower):
         '''Change the engine's horsepower.'''
         self.__horsepower = horsepower
+        
+'''
+Motores de Combustão Interna (MCI): Carros, caminhões, motos, tratores, barcos de pequeno porte.
+Motores de Combustão Externa: Locomotivas históricas, navios antigos, máquinas industriais clássicas.
+Motores Elétricos: Carros elétricos, ônibus elétricos, trens, veículos industriais.
+Motores Híbridos: Carros híbridos (como Toyota Prius, Chevrolet Volt), veículos utilitários.
+Motores a Hidrogênio: Carros a hidrogênio (Toyota Mirai), ônibus de emissão zero.
+Motores de Turbina a Gás: Aviões comerciais, helicópteros, veículos militares, barcos de alta velocidade.
+Motores Pneumáticos: Veículos experimentais, bicicletas de ar comprimido, veículos de curta distância em indústrias.
+'''
