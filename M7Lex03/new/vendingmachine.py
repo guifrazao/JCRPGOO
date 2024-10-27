@@ -1,5 +1,5 @@
 """
-3. Crie uma classe chamada VendingMachine que simule uma máquina de venda de
+M5L-ex03. Crie uma classe chamada VendingMachine que simule uma máquina de venda de
 produtos. Essa classe deve permitir cadastrar produtos, selecionar um produto para
 compra, inserir dinheiro, retornar o troco e exibir o estoque disponível.
 """
