@@ -1,3 +1,13 @@
+'''
+M10L-ex03. Considere, como subclasse da classe Person, a classe Employee. Considere que 
+cada instância da classe Employee tem, para além dos atributos que caracterizam a 
+classe Person, os atributos sectorCode (inteiro), baseSalary (vencimento base) e tax 
+(porcentagem retida dos impostos). Implemente a classe Employee com métodos 
+seletores e modificadores e um método calculateSalary. Altere o main para que você 
+possa verificar o funcionamento dos métodos implementados na classe Employee e 
+os herdados da classe Person. 
+'''
+
 from pessoa import Pessoa
 
 class Employee(Pessoa):
