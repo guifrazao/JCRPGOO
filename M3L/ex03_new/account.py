@@ -18,7 +18,7 @@ class Account:
         if self.verify_amount(amount):
             self.__bank_balance -= amount  # amount = quantia
         else:
-            return "\nDebit amount exceeds account balance"
+            print("\nDebit amount exceeds account balance")
 
     def get_bank_balance(self):
         return "\nThe account balance is R$" + str(self.__bank_balance)
@@ -30,8 +30,7 @@ class Account:
         print(self.get_bank_balance())
         print(self.get_owner_name())
 
-    @staticmethod
-    def verify_amount(amount):
-        if amount < 0:
+    def verify_amount(self, amount):
+        if amount > self.__bank_balance:
             return False
         return True
