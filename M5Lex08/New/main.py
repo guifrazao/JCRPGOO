@@ -1,3 +1,13 @@
+"""
+Refazer as listas M3L e M5L, aplicando o Princípio Aberto-Fechado e mostrar as diferenças
+de seu código, antes e depois.
+
+Implemente uma classe chamada GuessingGame que represente um jogo de
+adivinhação. Essa classe deve gerar um número aleatório, permitir que o jogador faça
+palpites e informar se o palpite está correto, informando se é maior ou menor que o
+número gerado.
+"""
+
 from GuessingGame import GuessingGame
 import random
 
