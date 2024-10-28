@@ -1,4 +1,7 @@
 """
+Refazer as listas M3L e M5L, aplicando o Princípio Aberto-Fechado e mostrar as diferenças
+de seu código, antes e depois.
+
 Escreva uma classe chamada Bicycle que possua campos para a velocidade,
 cadência dos pedais (número de rotações dos pedais por minuto), marcha atual e
 número de série. A velocidade e a cadência dos pedais não podem ser menores que
