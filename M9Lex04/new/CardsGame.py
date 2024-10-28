@@ -8,7 +8,7 @@ from Blackjack import Blackjack
 class CardsGame:
     """Chosen cards game is Blackjack"""
     __cards = [{"A":1}, {"2":2}, {"3":3}, {"4":4}, {"5":5}, {"6":6}, {"7":7}, {"8":8}, {"9":9}, {"10":10}] * 4
-    def __init__(self, game=None):
+    def __init__(self, game=None): #Jogo é passado para o construtor
         self.__players = []
         #the current deck (changes when cards are played)
         self.__curr_cards = []
