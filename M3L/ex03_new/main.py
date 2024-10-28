@@ -14,14 +14,14 @@ def create_account(owner):
 def main():
     owner = None
     account = None
-
     while True:
         print("\nMenu:")
         print("1. Create Owner")
         print("2. Create Account")
         print("3. View Owner Data")
         print("4. View Account Data")
-        print("5. Exit")
+        print("5. Debit")
+        print("6. Exit")
         choice = int(input("Enter your choice: "))
 
         if choice == 1:
@@ -44,6 +44,12 @@ def main():
             else:
                 print("No account created yet.")
         elif choice == 5:
+            if account:
+                amount = float(input("Enter the amount to debit: "))
+                account.debit(amount)
+            else:
+                print("No account created yet.")
+        elif choice == 6:
             break
         else:
             print("Invalid choice. Please try again.")
