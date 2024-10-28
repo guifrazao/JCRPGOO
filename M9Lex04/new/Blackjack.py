@@ -5,7 +5,7 @@ distribuir as cartas aos jogadores e permitir jogadas.
 """
 
 class Blackjack:
-    def __init__(self):
+    def __init__(self): #CardsGame é inicializado como None
         self.__cards_game = None
 
     def playGame(self, players, cards):
@@ -39,7 +39,7 @@ class Blackjack:
     def getCardsGame(self):
         return self.__cards_game
 
-    def setCardsGame(self, cards_game):
+    def setCardsGame(self, cards_game): #Associação pelo método setter
         self.__cards_game = cards_game
 
     def __checkForWinner(self, player):
