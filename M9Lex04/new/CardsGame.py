@@ -59,10 +59,9 @@ class CardsGame:
         self.__game = game
 
     def hasGame(self):
-        return self.__game is None
+        return self.__game is not None
 
     @classmethod
     def __getCards(cls):
         return cls.__cards
-
 
