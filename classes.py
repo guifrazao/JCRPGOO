@@ -14,20 +14,30 @@ class Product:
 
 class ItemOrder:
     def __init__(self, product: Product, quantity: int):
-        self.product = product
+        self.product = product # agregação
         self.quantity = quantity
+    
+    def itemInformation(self):
+        print(f"Produto: {self.product.description}, Quantidade: {self.quantity}")
 
 class Order:
     def __init__(self):
         self.__total = 0.0
-        self.__items = []
-    
-    def addItem(self, item: ItemOrder):
+        self.__items = [] # composição
+
+    def addItem(self, product: Product, quantity: int):
+        item = ItemOrder(product, quantity) 
         self.__items.append(item)
-    
+
     def getTotal(self):
         self.__total = sum(item.product.value * item.quantity for item in self.__items)
         return self.__total
+
+    def finalizePurchase(self):
+        print("Compra finalizada.")
+        print(f"Total a pagar: {self.getTotal():.2f}")
+        for item in self.__items:
+            item.itemInformation()
 
 
 
