@@ -1,3 +1,11 @@
+'''
+2. Implemente as classes descritas no diagrama abaixo, considerando que:
+a. Um pedido é composto por um conjunto de itens pedidos.
+b. Um item pedido associa-se com um produto.
+c. O cálculo do valor total do pedido deverá ser feito mediante a soma do preço de
+cada produto incluído nos itens pedidos.
+'''
+
 class Product:
     def __init__(self, code: int, value: float, description: str):
         self.code = code
