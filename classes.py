@@ -18,7 +18,7 @@ class ItemOrder:
         self.quantity = quantity
     
     def itemInformation(self):
-        print(f"Produto: {self.product.description}, Quantidade: {self.quantity}")
+        print(f"Produto {self.product.code}: {self.product.description}, Quantidade: {self.quantity}, Total: {self.product.value * self.quantity:.2f}")
 
 class Order:
     def __init__(self):
@@ -38,6 +38,3 @@ class Order:
         print(f"Total a pagar: {self.getTotal():.2f}")
         for item in self.__items:
             item.itemInformation()
-
-
-
