@@ -1,0 +1,1 @@
+from .IEntregaTrabalho import IEntregaTrabalho

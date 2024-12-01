@@ -1,0 +1,77 @@
+from familias_animais import Animal
+from familias_animais import Anfibio
+from familias_animais import Reptil
+from familias_animais import Ave
+from familias_animais import Mamifero
+
+class Zoologico:
+    def __init__(self):
+        self.__animais = []
+
+    def getAnimais(self):
+        return self.__animais
+
+    def adicionarAnimal(self, animal: Animal):
+        self.__animais.append(animal)
+
+    def getRepteis(self):
+        repteis = []
+        for animal in self.__animais:
+            if issubclass(animal, Reptil):
+                repteis.append(animal)
+        return repteis
+    
+    def getAves(self):
+        aves = []
+        for animal in self.__animais:
+            if issubclass(animal, Ave):
+                aves.append(animal)
+        return aves
+    
+    def getMamiferos(self):
+        mamiferos = []
+        for animal in self.__animais:
+            if issubclass(animal, Mamifero):
+                mamiferos.append(animal)
+        return mamiferos
+    
+    def getAnfibios(self):
+        anfibios = []
+        for animal in self.__animais:
+            if issubclass(animal, Anfibio):
+                anfibios.append(animal)
+        return anfibios
+
+    def imprimirInformacoesMamiferos(self):
+        for animal in self.__animais:
+            if isinstance(animal, Mamifero):
+                animal.imprimirInformacoes()
+                print()
+
+    def imprimirInformacoesAves(self):
+        for animal in self.__animais:
+            if isinstance(animal, Ave):
+                animal.imprimirInformacoes()
+                print()
+
+    def imprimirInformacoesRepteis(self):
+        for animal in self.__animais:
+            if isinstance(animal, Reptil):
+                animal.imprimirInformacoes()
+                print()
+
+    def imprimirInformacoesAnfibios(self):
+        for animal in self.__animais:
+            if isinstance(animal, Anfibio):
+                animal.imprimirInformacoes()
+                print()
+
+    def temEsteTipo(self, tipo):
+        for animal in self.__animais:
+            if isinstance(animal, tipo):
+                return True
+        return False
+
+    @staticmethod
+    def imprimirInformacoesAnimal(animal: Animal):
+        animal.imprimirInformacoes()
